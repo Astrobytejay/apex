@@ -1,22 +1,15 @@
 {
   "name": "server",
-
   "version": "1.0.0",
-
   "description": "",
-
-  "main": "index.js",
-
+  "main": "server/index.js",
   "scripts": {
-
-      "start": "nodemon index.js",
-
-      "test": "echo \"Error: no test specified\" && exit 1",
-
-      "heroku-postbuild": "cd ../Client && npm install && npm run build"
+    "start": "node server/index.js",
+    "heroku-postbuild": "cd Client && npm install && npm run build"
   },
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
