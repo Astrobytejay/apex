@@ -10,8 +10,44 @@ import { switchStyles } from "./components/switch";
 import { linkStyles } from "./components/link";
 import { breakpoints } from "./foundations/breakpoints";
 import { globalStyles } from "./styles";
-export default extendTheme(
-  { breakpoints }, // Breakpoints
+
+// Custom colors for light and dark modes
+const colors = {
+  brand: {
+    50: '#fafafa',  // Light mode text color
+    900: '#010412', // Dark mode background
+    textLight: '#010412', // Text color for light mode
+    textDark: '#fafafa',   // Text color for dark mode
+  },
+  backgroundDark: '#010412', // For background in dark mode
+  backgroundLight: '#ffffff', // For background in light mode
+};
+
+const config = {
+  initialColorMode: 'light', // Start in light mode
+  useSystemColorMode: false,  // Do not use system color mode
+};
+
+// Extend the theme to include the custom color modes and color palette
+const theme = extendTheme(
+  {
+    config,    // Color mode config
+    colors,    // Custom color palette
+    breakpoints, // Breakpoints
+    styles: {
+      global: {
+        body: {
+          bg: 'backgroundLight',  // Light mode background
+          color: 'brand.textLight',  // Light mode text
+          transition: "background-color 0.2s",
+          _dark: {
+            bg: 'backgroundDark',  // Dark mode background
+            color: 'brand.textDark', // Dark mode text
+          },
+        },
+      },
+    },
+  },
   globalStyles,
   badgeStyles, // badge styles
   buttonStyles, // button styles
@@ -23,3 +59,5 @@ export default extendTheme(
   switchStyles, // switch styles
   CardComponent // card component
 );
+
+export default theme;

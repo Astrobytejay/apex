@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const User = require('../model/schema/user');
+const User = require('../model/schema/user.js');
 const bcrypt = require('bcrypt');
-const { initializeLeadSchema } = require("../model/schema/lead");
-const { initializeContactSchema } = require("../model/schema/contact");
-const { initializePropertySchema } = require("../model/schema/property");
+const { initializeLeadSchema } = require("../model/schema/lead.js");
+const { initializeContactSchema } = require("../model/schema/contact.js");
+const { initializePropertySchema } = require("../model/schema/property.js");
 const { createNewModule } = require("../controllers/customField/customField.js");
 const customField = require('../model/schema/customField.js');
 const { contactFields } = require('./contactFields.js');

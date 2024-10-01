@@ -33,10 +33,9 @@ const index = async (req, res) => {
             "Emails",
             "Email Template",
             "Calender",
-            "Payments",
             "Reporting and Analytics",
             "Documents",
-        ];
+        ];        
 
         filteredCustomFields?.map(item => item?.moduleName)?.forEach((item) => {
             !routes?.includes(item) && routes?.push(item)

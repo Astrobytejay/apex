@@ -1,10 +1,10 @@
-const { Contact } = require('../../model/schema/contact')
-const email = require('../../model/schema/email')
-const MeetingHistory = require('../../model/schema/meeting')
-const phoneCall = require('../../model/schema/phoneCall')
-const Task = require('../../model/schema/task')
-const TextMsg = require('../../model/schema/textMsg')
-const DocumentSchema = require('../../model/schema/document')
+const { Contact } = require('../../model/schema/contact.js')
+const email = require('../../model/schema/email.js')
+const MeetingHistory = require('../../model/schema/meeting.js')
+const phoneCall = require('../../model/schema/phoneCall.js')
+const Task = require('../../model/schema/task.js')
+const TextMsg = require('../../model/schema/textMsg.js')
+const DocumentSchema = require('../../model/schema/document.js')
 const Quotes = require("../../model/schema/quotes.js");
 const Invoices = require("../../model/schema/invoices.js");
 

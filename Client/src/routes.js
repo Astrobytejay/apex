@@ -393,13 +393,6 @@ const routes = [
     component: Calender,
   },
   // ------------- Payments Routes ------------------------
-  {
-    name: "Payments",
-    layout: [ROLE_PATH.superAdmin, ROLE_PATH.user],
-    path: "/payments",
-    icon: <Icon as={FaRupeeSign} width='20px' height='20px' color='inherit' />,
-    component: Payments,
-  },
 
   // -----------------------------Admin setting-------------------------------------
   {

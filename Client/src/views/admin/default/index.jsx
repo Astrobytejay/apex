@@ -28,7 +28,7 @@ import ReportChart from "../reports/components/reportChart";
 import Chart from "components/charts/LineChart.js";
 import { HasAccess } from "../../../redux/accessUtils";
 import PieChart from "components/charts/PieChart";
-import CountUpComponent from "../../../../src/components/countUpComponent/countUpComponent";
+import CountUpComponent from "../../../components/countUpComponent/countUpComponent";
 import Spinner from 'components/spinner/Spinner';
 import { useSelector } from "react-redux";
 

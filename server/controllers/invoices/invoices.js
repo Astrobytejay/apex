@@ -1,6 +1,6 @@
 const Invoices = require("../../model/schema/invoices.js");
 const mongoose = require("mongoose");
-const User = require('../../model/schema/user')
+const User = require('../../model/schema/user.js')
 const Quotes = require("../../model/schema/quotes.js");
 
 

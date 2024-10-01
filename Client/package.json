@@ -15,7 +15,7 @@
     "@fullcalendar/resource": "^6.1.8",
     "@fullcalendar/resource-timeline": "^6.1.8",
     "@fullcalendar/scrollgrid": "^6.1.8",
-    "@hypertheme-editor/chakra-ui": "^0.1.5",
+    "@hypertheme-editor/chakra-ui": "^0.2.2",
     "@react-pdf/renderer": "^3.4.4",
     "@reduxjs/toolkit": "^2.0.1",
     "@stripe/react-stripe-js": "^2.3.0",
@@ -32,13 +32,13 @@
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "papaparse": "^5.4.1",
-    "react": "17.0.2",
+    "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-beautiful-dnd": "^13.1.1",
     "react-calendar": "^3.7.0",
     "react-custom-scrollbars-2": "^4.2.1",
     "react-datepicker": "^4.16.0",
-    "react-dom": "17.0.2",
+    "react-dom": "^18.2.0",
     "react-dropzone": "^12.0.4",
     "react-email-editor": "^1.7.11",
     "react-icons": "^4.3.1",
@@ -87,6 +87,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "source-map-explorer": "^2.5.3"
   }
 }

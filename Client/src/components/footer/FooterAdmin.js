@@ -42,9 +42,9 @@ export default function Footer() {
             fontWeight='500'
             color={textColor}
             target="_blank"
-            href='https://prolinkinfotech.com/'> Prolink Infotech.</Link> Need help, facing issues, or looking for a new feature? Contact us for paid support and services at <Link href='mailto:alternatecrm@gmail.com' fontWeight='500'
+            href='https://prolinkinfotech.com/'> Eagle Eye CRM</Link> Copyrights of Eagle Eye CRM<Link href='www.eagleeyecrm.com' fontWeight='500'
               color={textColor}
-              target="_blank">alternatecrm@gmail.com</Link>
+              target="_blank"> All Rights Reserved</Link>
         </Text>
       </Text>
       {/* <List display='flex'>

@@ -1,7 +1,7 @@
 const express = require("express");
 const auth = require("../../middelwares/auth");
 const customField = require("./customField");
-const img = require('../../controllers/images/imagesController');
+const img = require('../images/imagesController');
 
 const router = express.Router();
 

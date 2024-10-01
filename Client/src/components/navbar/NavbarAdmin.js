@@ -1,16 +1,15 @@
 // Chakra Imports
-import { Box, Flex, Heading, Image, Link, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, Link, Text, useColorModeValue, useColorMode, IconButton } from '@chakra-ui/react';
 import AdminNavbarLinks from 'components/navbar/NavbarLinksAdmin';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-
-import { AiOutlineMenuUnfold } from "react-icons/ai";
-import { AiOutlineMenuFold } from "react-icons/ai";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchImage } from '../../redux/slices/imageSlice';
+import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiTwotoneHome } from "react-icons/ai"; // Added home icon for breadcrumbs
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'; // For dark mode toggle
+import logo from '../../assets/img/eagleeye.png'; // Adjust the path as needed
 
 export default function AdminNavbar(props) {
 	const [scrolled, setScrolled] = useState(false);
+	const { colorMode, toggleColorMode } = useColorMode(); // Dark mode toggle logic
 
 	useEffect(() => {
 		window.addEventListener('scroll', changeNavbar);
@@ -18,22 +17,8 @@ export default function AdminNavbar(props) {
 		return () => {
 			window.removeEventListener('scroll', changeNavbar);
 		};
-	});
+	}, []);
 
-	const { secondary, message, brandText, under, setOpenSidebar, openSidebar, largeLogo, routes } = props;
-	// Here are all the props that may change depending on navbar's type or state.(secondary, variant, scrolled)
-	let mainText = useColorModeValue('navy.700', 'white');
-	let secondaryText = useColorModeValue('gray.700', 'white');
-	let navbarPosition = 'fixed';
-	let navbarFilter = 'none';
-	let navbarBackdrop = 'blur(20px)';
-	let navbarShadow = 'none';
-	let navbarBg = useColorModeValue('#fff', 'rgba(11,20,55,0.5)');
-	let navbarBorder = 'transparent';
-	let secondaryMargin = '-9px';
-	let paddingX = '15px';
-	let gap = '0px';
-	let size = "sm";
 	const changeNavbar = () => {
 		if (window.scrollY > 1) {
 			setScrolled(true);
@@ -41,139 +26,83 @@ export default function AdminNavbar(props) {
 			setScrolled(false);
 		}
 	};
+
+	const { secondary, message, brandText, under, setOpenSidebar, openSidebar, largeLogo, routes } = props;
+
+	// Using the custom colors from theme.js
+	let mainText = useColorModeValue('brand.textLight', 'brand.textDark');   // Light mode uses dark text, dark mode uses light text
+	let secondaryText = useColorModeValue('gray.700', 'gray.300');           // Adjust for lighter text accents
+	let navbarBg = useColorModeValue('brand.50', 'brand.900');               // Background in light/dark modes
+
 	return (
 		<Box
-			position={navbarPosition}
-			boxShadow={navbarShadow}
-			bg={navbarBg}
-			borderColor={navbarBorder}
-			filter={navbarFilter}
-			backdropFilter={navbarBackdrop}
-			backgroundPosition='center'
-			backgroundSize='cover'
-			// borderRadius='16px'
-			borderWidth='1.5px'
-			borderStyle='solid'
+			position="fixed"
+			boxShadow="0px 4px 12px rgba(0, 0, 0, 0.1)"
+			bg={navbarBg}   // Dark mode uses brand.900 (#010412)
+			borderColor="transparent"
+			filter="none"
+			backdropFilter="blur(20px)"
+			backgroundPosition="center"
+			backgroundSize="cover"
+			borderWidth="1.5px"
+			borderStyle="solid"
 			zIndex={1}
-			transitionDelay='0s, 0s, 0s, 0s'
-			transitionDuration=' 0.25s, 0.25s, 0.25s, 0s'
-			transition-property='box-shadow, background-color, filter, border'
-			transitionTimingFunction='linear, linear, linear, linear'
+			transition="all 0.25s linear"
+			display="flex"
 			alignItems={{ xl: 'center' }}
-			display={secondary ? 'block' : 'flex'}
-			minH='75px'
+			minH="75px"
 			justifyContent={{ xl: 'center' }}
-			lineHeight='25.6px'
-			mx='auto'
-			mt={secondaryMargin}
-			pb='6px'
-			right={{ base: '0px' }}
-			// right={{ base: '12px', md: '30px', lg: '30px', xl: '30px' }}
-			px={{
-				sm: paddingX,
-				md: '10px'
-			}}
-			ps={{
-				xl: '12px'
-			}}
-			pt='8px'
-			top={{ base: '0px' }}
-			w={{
-				base: '100vw'
-				// base: 'calc(100vw - 0%)',
-				// md: 'calc(100vw - 0%)',
-				// lg: 'calc(100vw - 0%)',
-				// xl: openSidebar === true ? 'calc(100vw - 286px)' : 'calc(100vw - 80px)',
-				// '2xl': openSidebar === true ? 'calc(100vw - 286px)' : 'calc(100vw - 80px)'
-			}}
-			sx={{ boxShadow: '14px 17px 40px 4px rgba(112, 144, 176, 0.08)' }}
+			lineHeight="25.6px"
+			mx="auto"
+			mt="-9px"
+			pb="6px"
+			right="0px"
+			px={{ sm: '15px', md: '10px' }}
+			ps={{ xl: '12px' }}
+			pt="8px"
+			top="0px"
+			w="100vw"
 		>
 			<Flex
-				w='100%'
-				flexDirection={{
-					sm: 'column',
-					md: 'row'
-				}}
+				w="100%"
+				flexDirection={{ sm: 'column', md: 'row' }}
 				alignItems={{ xl: 'center' }}
-				mb={gap}>
-				<Box
-					//  mb={{ sm: '8px', md: '10px' }} 
-					//  pt="15px"
-					display={"flex"} alignItems={"center"}>
-					{/*
-					<Breadcrumb>
-						<BreadcrumbItem color={secondaryText} fontSize='sm' mb='5px'>
-							<BreadcrumbLink as={rrd.Link} to='/admin/default' color={secondaryText}>
-								<AiTwotoneHome />
-							</BreadcrumbLink>
-						</BreadcrumbItem>
-
-						{under?.under && <BreadcrumbItem color={secondaryText} fontSize='sm' mb='5px'>
-							<BreadcrumbLink as={rrd.Link} to={`${under.both === true ? '' : under.layout + '/'}${under.under}`} color={secondaryText}>
-								{under.parentName}
-							</BreadcrumbLink>
-						</BreadcrumbItem>}
-
-
-						<BreadcrumbItem color={secondaryText} fontSize='sm' mb='5px'>
-							<BreadcrumbLink as={rrd.Link} to='#' color={secondaryText}>
-								{brandText}
-							</BreadcrumbLink>
-						</BreadcrumbItem>
-
-					</Breadcrumb>
-					*/}
+				mb="0px"
+			>
+				<Box display="flex" alignItems="center">
+					{/* Logo */}
 					<Flex me={openSidebar ? "" : "5"} mx={openSidebar ? "14" : "1"} display={{ sm: "none", xl: "flex" }}>
-						{largeLogo && largeLogo[0]?.logoLgImg || largeLogo && largeLogo[0]?.logoSmImg ? <Image
+						<Image
 							style={{ width: openSidebar ? "165px" : "60px", height: '52px', objectFit: "contain" }}
-							src={openSidebar === true ? largeLogo[0]?.logoLgImg : largeLogo[0]?.logoSmImg} // Set the source path of your image
-							alt="Logo" // Set the alt text for accessibility
+							src={logo}
+							alt="Logo"
 							cursor="pointer"
 							onClick={() => !props.from && setOpenSidebar(!openSidebar)}
 							userSelect="none"
 							my={2}
-						/> : <Heading my={4} style={{ width: openSidebar ? "165px" : "60px", height: '52px', objectFit: "contain" }}
-							cursor={"pointer"} onClick={() => !props.from && setOpenSidebar(!openSidebar)} userSelect={"none"}>{openSidebar === true ? "Prolink" : "Pr"}</Heading>}
+						/>
 					</Flex>
-					<Box display={{ sm: "none", xl: "flex" }} ms={openSidebar ? "" : "3"} onClick={() => setOpenSidebar(!openSidebar)} style={{ fontSize: "25px" }}>{openSidebar ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}</Box>
-					<Link
-						color={mainText}
-						display={{ sm: "flex", xl: "none" }}
-					>
-						{largeLogo && largeLogo[0]?.logoLgImg ? <Image
-							style={{ width: "100%", height: '52px' }}
-							src={largeLogo[0]?.logoLgImg}
-							alt="Logo"
-							cursor="pointer"
-							userSelect="none"
-							my={2}
-						/> : <Heading my={4}
-							cursor={"pointer"} userSelect={"none"}>{openSidebar === true ? "Prolink" : "Pr"}</Heading>}
-					</Link>
 
-					<Link
-						color={mainText}
-						href='#'
-						pt="2px"
-						bg='inherit'
-						ps="30px"
-						display={{ sm: "none", xl: "flex" }}
-						borderRadius='inherit'
-						fontWeight='bold'
-						fontSize='34px'
-						textTransform={"capitalize"}
-						_hover={{ color: { mainText } }}
-						_active={{
-							bg: 'inherit',
-							transform: 'none',
-							borderColor: 'transparent'
-						}}
-						_focus={{
-							boxShadow: 'none'
-						}}>
-						{brandText}
-					</Link>
+					{/* Sidebar Toggle */}
+					<Box display={{ sm: "none", xl: "flex" }} ms={openSidebar ? "" : "3"} onClick={() => setOpenSidebar(!openSidebar)} style={{ fontSize: "25px" }}>
+						{openSidebar ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
+					</Box>
 				</Box>
+
+				{/* Breadcrumbs */}
+				<Flex
+					alignItems="center"
+					justifyContent="flex-start"
+					fontSize="sm"
+					color={secondaryText}
+					display={{ sm: "none", xl: "flex" }}
+					ml={4}
+				>
+					<Text as="span" mr={2}><AiTwotoneHome /></Text>
+					<Text> {brandText} </Text>
+				</Flex>
+
+				{/* Navbar Links */}
 				<Box ms='auto' w={{ sm: '100%', md: 'unset' }}>
 					<AdminNavbarLinks
 						setOpenSidebar={setOpenSidebar}
@@ -186,7 +115,20 @@ export default function AdminNavbar(props) {
 						routes={routes}
 					/>
 				</Box>
+
+				{/* Dark Mode Toggle aligned with Notification Bell */}
+				<Flex alignItems="center">
+					<IconButton
+						aria-label="Toggle dark mode"
+						icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+						onClick={toggleColorMode}
+						variant="ghost"
+						mx="2"
+					/>
+				</Flex>
 			</Flex>
+
+			{/* Secondary Message */}
 			{secondary ? <Text color='white'>{message}</Text> : null}
 		</Box>
 	);
@@ -197,5 +139,8 @@ AdminNavbar.propTypes = {
 	variant: PropTypes.string,
 	secondary: PropTypes.bool,
 	fixed: PropTypes.bool,
-	onOpen: PropTypes.func
+	onOpen: PropTypes.func,
+	setOpenSidebar: PropTypes.func,
+	openSidebar: PropTypes.bool,
+	largeLogo: PropTypes.array,
 };
