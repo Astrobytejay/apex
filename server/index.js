@@ -21,10 +21,6 @@ app.use(cors({
 // API Routes
 app.use('/api', route);
 
-app.get('/', (req, res) => {
-    res.send('Welcome to my world...');
-});
-
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../Client/build')));
 

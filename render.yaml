@@ -11,7 +11,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: DB_URL
-        value: <your-mongo-db-url>
+        value: mongodb+srv://Astrobyte:Flordia2803@cluster1.briez.mongodb.net/Prolink?retryWrites=true&w=majority&appName=Cluster1
       - key: PORT
         value: 10000  # This will be automatically set by Render in most cases.
     autoDeploy: true
