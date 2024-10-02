@@ -13,7 +13,10 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://eagleeyecrm.onrender.com', // Replace with your actual frontend URL on Render
+    credentials: true
+}));
 
 // API Routes
 app.use('/api', route);
