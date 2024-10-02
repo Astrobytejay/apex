@@ -10,7 +10,6 @@ import {
   FormErrorMessage,
   FormLabel,
   Heading,
-  Icon,
   Input,
   InputGroup,
   InputRightElement,
@@ -18,8 +17,8 @@ import {
   useColorModeValue,
   Spinner,
   Link as ChakraLink,
+  Icon,
 } from '@chakra-ui/react';
-// Icons
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
 // Custom imports
@@ -36,7 +35,8 @@ import { Link } from 'react-router-dom';
 function SignIn() {
   // Chakra color mode
   const textColor = useColorModeValue('navy.700', 'white');
-  const textColorSecondary = useColorModeValue('gray.400', 'gray.500');
+  const textColorSecondary = useColorModeValue('white', 'gray.500'); // White for the "Enter your email" text
+  const blackTextColor = useColorModeValue('black', 'gray.500'); // Black for "Don't have an account?"
   const brandStars = useColorModeValue('brand.500', 'brand.400');
   const [isLoading, setIsLoading] = useState(false);
   const [checkBox, setCheckBox] = useState(true);
@@ -121,7 +121,7 @@ function SignIn() {
         <Text
           mb="36px"
           ms="4px"
-          color={textColorSecondary}
+          color={textColorSecondary} // White text for this part
           fontWeight="400"
           fontSize="md"
           textAlign="center"
@@ -250,7 +250,7 @@ function SignIn() {
 
             {/* Add Sign Up Link */}
             <Flex justifyContent="center" alignItems="center">
-              <Text color={textColorSecondary} fontSize="sm" mr="2">
+              <Text color={blackTextColor} fontSize="sm" mr="2">
                 Don't have an account?
               </Text>
               <ChakraLink as={Link} to="/signup" color="blue.500" fontSize="sm" fontWeight="500">
