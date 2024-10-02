@@ -121,7 +121,7 @@ function SignIn() {
         <Text
           mb="36px"
           ms="4px"
-          color={textColorSecondary}
+          color="white" // Changed to white
           fontWeight="400"
           fontSize="md"
           textAlign="center"
@@ -250,7 +250,7 @@ function SignIn() {
 
             {/* Add Sign Up Link */}
             <Flex justifyContent="center" alignItems="center">
-              <Text color={textColorSecondary} fontSize="sm" mr="2">
+              <Text color="black" fontSize="sm" mr="2"> {/* Changed to black */}
                 Don't have an account?
               </Text>
               <ChakraLink as={Link} to="/signup" color="blue.500" fontSize="sm" fontWeight="500">

@@ -6,7 +6,7 @@ export const postApi = async (path, data, login) => {
     try {
         let result = await axios.post(constant.baseUrl + path, data, {
             headers: {
-                Authorization: localStorage.getItem("token") || sessionStorage.getItem("token")
+                Authorization: `Bearer ${localStorage.getItem("token") || sessionStorage.getItem("token")}`
             }
         })
         if (result.data?.token && result.data?.token !== null) {
