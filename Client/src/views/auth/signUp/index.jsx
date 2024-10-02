@@ -111,9 +111,9 @@ function SignUp() {
       >
         {/* Centering the header and text */}
         <Box textAlign="center">
-          <Heading color={textColor} fontSize="36px" mb="10px">
-            Sign Up
-          </Heading>
+  <Heading color="white" fontSize="36px" mb="10px">
+    Sign Up
+  </Heading>
           <Text
             mb="36px"
             color={textColorSecondary} // White color
