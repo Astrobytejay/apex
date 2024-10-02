@@ -1,0 +1,28 @@
+# render.yaml
+
+services:
+  - name: eagleeye-backend
+    type: web
+    env: node
+    region: oregon  # or another region Render supports
+    buildCommand: cd server && npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_URL
+        value: <your-mongo-db-url>
+      - key: PORT
+        value: 10000  # This will be automatically set by Render in most cases.
+    autoDeploy: true
+
+  - name: eagleeye-frontend
+    type: web
+    env: static
+    region: oregon
+    buildCommand: cd Client && npm install && npm run build
+    staticPublishPath: Client/build
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
