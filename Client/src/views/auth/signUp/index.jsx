@@ -1,5 +1,3 @@
-// src/views/auth/signUp/index.jsx
-
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 // Chakra imports
@@ -18,20 +16,21 @@ import {
   useColorModeValue,
   Spinner,
   Link as ChakraLink,
-  Icon, // Add this import
+  Icon,
 } from '@chakra-ui/react';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
-import { signupSchema } from '../../../schema'; // Import the signupSchema
+import { signupSchema } from '../../../schema'; 
 import { toast } from 'react-toastify';
-import { postApi } from '../../../services/api'; // Adjust the path if necessary
-import backgroundImage from '../../../assets/background.jpeg'; // Ensure the path is correct
+import { postApi } from '../../../services/api';
+import backgroundImage from '../../../assets/background.jpeg'; 
 import { Link, useNavigate } from 'react-router-dom';
 
 function SignUp() {
   // Chakra color mode
   const textColor = useColorModeValue('navy.700', 'white');
-  const textColorSecondary = useColorModeValue('gray.400', 'gray.500');
+  const textColorSecondary = useColorModeValue('white', 'gray.500'); // Changed to white
+  const blackTextColor = useColorModeValue('black', 'gray.500'); // Changed to black for "Already have an account"
   const brandStars = useColorModeValue('brand.500', 'brand.400');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -75,7 +74,6 @@ function SignUp() {
       let response = await postApi('api/user/register', payload);
       if (response && response.status === 201) {
         toast.success('Registration Successful!');
-        // Redirect to sign-in page after successful registration
         navigate('/');
       } else {
         toast.error(response.response.data?.error || 'Registration failed');
@@ -111,14 +109,14 @@ function SignUp() {
         flexDirection="column"
         backgroundColor="transparent"
       >
-        <Box me="auto">
+        {/* Centering the header and text */}
+        <Box textAlign="center">
           <Heading color={textColor} fontSize="36px" mb="10px">
             Sign Up
           </Heading>
           <Text
             mb="36px"
-            ms="4px"
-            color={textColorSecondary}
+            color={textColorSecondary} // White color
             fontWeight="400"
             fontSize="md"
           >
@@ -295,7 +293,7 @@ function SignUp() {
 
             {/* Link to Sign In */}
             <Flex justifyContent="center" alignItems="center">
-              <Text color={textColorSecondary} fontSize="sm" mr="2">
+              <Text color={blackTextColor} fontSize="sm" mr="2">
                 Already have an account?
               </Text>
               <ChakraLink as={Link} to="/" color="blue.500" fontSize="sm" fontWeight="500">
