@@ -36,9 +36,8 @@ const DATABASE = process.env.DB || 'Prolink';
 db(DATABASE_URL, DATABASE);
 
 // Start the server
-const server = app.listen(port, () => {
-    const protocol = (process.env.HTTPS === true || process.env.NODE_ENV === 'production') ? 'https' : 'http';
-    const { address } = server.address();
-    const host = address === '::' ? '127.0.0.1' : address;
-    console.log(`Server listening at ${protocol}://${host}:${port}/`);
+// Start the server
+const server = app.listen(port, '0.0.0.0', () => {
+    const protocol = (process.env.HTTPS === 'true' || process.env.NODE_ENV === 'production') ? 'https' : 'http';
+    console.log(`Server listening at ${protocol}://0.0.0.0:${port}/`);
 });
