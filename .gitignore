@@ -1,33 +1,35 @@
+# Ignore node_modules since Heroku installs dependencies automatically
 node_modules
-package-lock.json
-yarn.lock
-build
-
-# dependencies
 Client/node_modules
 server/node_modules
-server/uploads
-server/.env
-Client/.env
 
-/.pnp
-.pnp.js
+# Ignore lock files (optional, depending on your package manager)
+package-lock.json
+yarn.lock
 
-# testing
-/coverage
-
-# production
+# Ignore build directories
 /build
+Client/build
+server/build
 
-*.bat
-
-# misc
-.DS_Store
+# Environment files (ensure sensitive data is not pushed)
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+server/.env
+Client/.env
 
+# Miscellaneous files (logs, cache, OS specific)
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.DS_Store
+
+# Ignore test coverage reports
+/coverage
+
+# Ignore Heroku related local settings
+/.pnp
+.pnp.js
