@@ -6,7 +6,7 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
-const port = process.env.PORT || 5001; // Use PORT from environment if available
+const port = process.env.PORT || 5001; // Make sure Render assigns the correct port
 
 // Setup Express App
 const app = express();
@@ -39,8 +39,7 @@ const DATABASE = process.env.DB || 'Prolink';
 db(DATABASE_URL, DATABASE);
 
 // Start the server
-// Start the server
-const server = app.listen(port, '0.0.0.0', () => {
+app.listen(port, '0.0.0.0', () => {
     const protocol = (process.env.HTTPS === 'true' || process.env.NODE_ENV === 'production') ? 'https' : 'http';
     console.log(`Server listening at ${protocol}://0.0.0.0:${port}/`);
 });
