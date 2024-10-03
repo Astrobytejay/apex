@@ -21,7 +21,8 @@ import {
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
 import { signupSchema } from '../../../schema'; 
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import toastify styles
 import { postApi } from '../../../services/api';
 import backgroundImage from '../../../assets/background.jpeg'; 
 import { Link, useNavigate } from 'react-router-dom';
@@ -71,23 +72,40 @@ function SignUp() {
         email: values.email,
         password: values.password,
       };
-      let response = await postApi('api/user/register', payload);
+  
+      // Ensure the API URL is correct and adjust if necessary
+      let response = await postApi('/api/user/register', payload);
+  
       if (response && response.status === 201) {
         toast.success('Registration Successful!');
         navigate('/');
       } else {
-        toast.error(response.response.data?.error || 'Registration failed');
+        const errorMessage = response.data?.error || 'Registration failed. Please try again.';
+        toast.error(errorMessage);
       }
     } catch (e) {
       console.log(e);
-      toast.error('An error occurred during registration.');
+      // Display a general error message
+      toast.error('An error occurred during registration. Please try again.');
     } finally {
       setIsLoading(false);
     }
-  };
+  };  
 
   return (
     <>
+      {/* Toast Notification */}
+      <ToastContainer 
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
+      />
+      
       {/* Background Image */}
       <Box
         position="fixed"
@@ -111,9 +129,9 @@ function SignUp() {
       >
         {/* Centering the header and text */}
         <Box textAlign="center">
-  <Heading color="white" fontSize="36px" mb="10px">
-    Sign Up
-  </Heading>
+          <Heading color="white" fontSize="36px" mb="10px">
+            Sign Up
+          </Heading>
           <Text
             mb="36px"
             color={textColorSecondary} // White color
